@@ -1,4 +1,5 @@
 
+
 // For a single note
 const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
@@ -14,10 +15,9 @@ let activeNote = {};
 
 
 
-
 $(document).ready(function () {
-  console.log('Page loaded');
-
+  console.log('Welcome to Notiker: A NodeJS and Express powered note-taking app');
+  // When typing noteTitle or noteText, check if a note's title or text are empty - hide or show the save button
   $noteTitle.on("keyup", handleRenderSaveBtn);
   $noteText.on("keyup", handleRenderSaveBtn);
 
@@ -36,6 +36,9 @@ $(document).ready(function () {
 
 
 
+
+
+// Sets the activeNote and displays it
 const handleNoteView = function () {
   activeNote = $(this).data();
   renderActiveNote();
@@ -48,7 +51,7 @@ const renderActiveNote = function () {
 
   // If there is an id, set attributes to read-only
   // Otherwise, keep note fields blank
-  if (activeNote.id) {
+  if (activeNote.id >= 0) {
     $noteTitle.attr("readonly", true);
     $noteText.attr("readonly", true);
     $noteTitle.val(activeNote.title);
@@ -78,11 +81,6 @@ const handleNewNoteView = function () {
 };
 
 
-
-
-
-
-
 // Get the note data from the inputs, save it to the db and update the view
 const handleNoteSave = function () {
   // Create a new note
@@ -110,6 +108,8 @@ const saveNote = function (newNote) {
 
 
 
+
+// Delete the clicked note
 const handleNoteDelete = function (event) {
   // prevents the click listener for the list from being called when the button inside of it is clicked
   event.stopPropagation();
@@ -138,6 +138,9 @@ const deleteNote = function (id) {
 
 
 
+
+
+// Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = function () {
   return getNotes().then(function (data) {
     renderNoteList(data);
