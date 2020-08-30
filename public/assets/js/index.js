@@ -1,11 +1,10 @@
-/* DOM SELECTORS */
-// -------------------------------------------------------------------
 
 // For a single note
 const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
 const $newNoteBtn = $(".new-note");
+const $newNoteIcon = $(".fa-pen .new-note");
 
 // Note list ul
 const $noteList = $(".list-container .list-group");
@@ -15,12 +14,10 @@ let activeNote = {};
 
 
 
-/* CLICK EVENTS */
-// -------------------------------------------------------------------
 
 $(document).ready(function () {
   console.log('Page loaded');
-  // When typing noteTitle or noteText, check if a note's title or text are empty - hide or show the save button
+
   $noteTitle.on("keyup", handleRenderSaveBtn);
   $noteText.on("keyup", handleRenderSaveBtn);
 
@@ -29,21 +26,16 @@ $(document).ready(function () {
 
   // When New button is clicked, allow user to enter a new note
   $newNoteBtn.on("click", handleNewNoteView);
+  $newNoteIcon.on("click", handleNewNoteView);
 
   // When list item is clicked, display it as the activeNote
   $noteList.on("click", ".list-group-item", handleNoteView);
-  // When list item 
+  // When delete icon on list item is clicked, delete note
   $noteList.on("click", ".delete-note", handleNoteDelete);
 });
 
 
 
-/* FUNCTIONS FOR PAGE FUNCTIONALITY */
-// -------------------------------------------------------------------
-
-/* Displaying an Active Note */
-// -------------------------------------------------------------------
-// Sets the activeNote and displays it
 const handleNoteView = function () {
   activeNote = $(this).data();
   renderActiveNote();
@@ -88,8 +80,8 @@ const handleNewNoteView = function () {
 
 
 
-/* Saving a Note */
-// -------------------------------------------------------------------
+
+
 
 // Get the note data from the inputs, save it to the db and update the view
 const handleNoteSave = function () {
@@ -118,10 +110,6 @@ const saveNote = function (newNote) {
 
 
 
-/* Deleting a Note */
-// -------------------------------------------------------------------
-
-// Delete the clicked note
 const handleNoteDelete = function (event) {
   // prevents the click listener for the list from being called when the button inside of it is clicked
   event.stopPropagation();
@@ -150,10 +138,6 @@ const deleteNote = function (id) {
 
 
 
-/* Displaying Existing Notes */
-// -------------------------------------------------------------------
-
-// Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = function () {
   return getNotes().then(function (data) {
     renderNoteList(data);

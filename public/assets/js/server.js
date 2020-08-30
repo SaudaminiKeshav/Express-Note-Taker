@@ -4,21 +4,20 @@ var path = require('path');
 
 var notesArray = require("./db/db.json");
 
-/* SETS UP THE EXPRESS APP */
+
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 
-/* STARTS THE SERVER TO BEGIN LISTENING */
+
 app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
 });
 
-
-
+// Basic routes that take user to each HTML page
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "public/index.html"));
 });
@@ -27,7 +26,7 @@ app.get("/notes", function (req, res) {
     res.sendFile(path.join(__dirname, "public/notes.html"));
 });
 
-
+// Returns all notes from when getNotes() is called in index.js
 app.get("/api/notes", function (req, res) {
     return res.json(notesArray);
 });
@@ -36,10 +35,25 @@ app.get("/api/notes", function (req, res) {
 
 // Route for saving a note to db.json
 app.post("/api/notes", function (req, res) {
-
+    // req.body is JSON post sent from UI
     let newNoteRequest = req.body;
     console.log(newNoteRequest);
 
     notesArray.push(newNoteRequest);
+
+    // Set id property of newNoteRequest to its index in notesArray
+    newNoteRequest.id = notesArray.indexOf(newNoteRequest);
+    
     res.sendStatus(200);
+});
+
+
+
+app.delete("/api/notes/:id", function (req, res) {
+    // id is index of note in notesArray
+    let id = parseInt(req.params.id);
+    // Use id index to remove item from notesArray
+    notesArray.splice(id, 1);
+
+    return res.json(notesArray);
 });
