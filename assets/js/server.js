@@ -2,7 +2,7 @@
 const express = require('express');
 var path = require('path');
 
-var notesArray = require("./db/db.json");
+var notesArray = require("./db.json");
 
 
 var app = express();
