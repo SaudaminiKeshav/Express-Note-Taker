@@ -1,7 +1,7 @@
 
 
 // For a single note
-const $noteTitle = $(".note-title");
+const $noteTitle = document.getElementsByClassName( ".note-title");
 const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
 const $newNoteBtn = $(".new-note");
