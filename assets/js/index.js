@@ -1,7 +1,7 @@
 
 
 // For a single note
-const $noteTitle = document.getElementsByClassName( ".note-title");
+const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
 const $saveNoteBtn = $(".save-note");
 const $newNoteBtn = $(".new-note");
@@ -14,6 +14,9 @@ const $noteList = $(".list-container .list-group");
 let activeNote = {};
 
 
+
+/* CLICK EVENTS */
+// -------------------------------------------------------------------
 
 $(document).ready(function () {
   console.log('Welcome to Notiker: A NodeJS and Express powered note-taking app');
@@ -33,9 +36,6 @@ $(document).ready(function () {
   // When delete icon on list item is clicked, delete note
   $noteList.on("click", ".delete-note", handleNoteDelete);
 });
-
-
-
 
 
 // Sets the activeNote and displays it
@@ -81,6 +81,7 @@ const handleNewNoteView = function () {
 };
 
 
+
 // Get the note data from the inputs, save it to the db and update the view
 const handleNoteSave = function () {
   // Create a new note
@@ -105,8 +106,6 @@ const saveNote = function (newNote) {
     method: "POST"
   });
 };
-
-
 
 
 // Delete the clicked note
@@ -137,9 +136,6 @@ const deleteNote = function (id) {
 };
 
 
-
-
-
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = function () {
   return getNotes().then(function (data) {
@@ -166,7 +162,7 @@ const renderNoteList = function (notes) {
     let $li = $("<li class='list-group-item'>").data(note);
     let $span = $("<span>").text(note.title);
     let $delBtn = $(
-      "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
+      "<i class='fas fa-trash-alt float-right text-muted delete-note'>"
     );
 
     $li.append($span, $delBtn);
