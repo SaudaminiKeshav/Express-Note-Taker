@@ -1,14 +1,23 @@
 {
   "name": "note-taker",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Description",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "SaudaminiKeshav",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaudaminiKeshav/Express-Note-Taker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SaudaminiKeshav/Express-Note-Taker/issues"
+  },
+  "homepage": "https://github.com/SaudaminiKeshav/Express-Note-Taker#readme"
 }
