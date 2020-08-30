@@ -64,6 +64,16 @@ Follow these guidelines for committing:
 
 We would like you to have well over 200 commits by graduation, so commit early and often!
 
+## Below is the completed application link and as well as the gif to show how the app functions.
+
+This application can be used to write, save, and delete notes. This NodeJS application uses an Express backend to save and retrieve note data.
+
+The application is deployed and hosted on Heroku from this GitHub repo. The live page can be viewed here: https://note-taker-express-application.herokuapp.com/
+
+![NoteTaker homepage](public/assets/images/homepage.png)
+
+![NoteTaker note taking functionality](public/assets/images/notetaking.gif)
+
 ## Submission on BCS
 
 You are required to submit the following:
