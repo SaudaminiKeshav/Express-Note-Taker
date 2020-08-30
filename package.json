@@ -9,6 +9,7 @@
   "author": "SaudaminiKeshav",
   "license": "ISC",
   "dependencies": {
+    "document": "^0.4.7",
     "express": "^4.17.1",
     "heroku": "^7.42.13",
     "init": "^0.1.2",
